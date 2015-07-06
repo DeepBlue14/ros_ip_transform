@@ -2,15 +2,9 @@
 
 
 RosClient::RosClient()
-{cout << "HERE (1)" << endl;
+{
     pub = new Publisher();
-    cout << "HERE (2)" << endl;
-    //serverIPStr = "127.0.0.1";
-    //serverIP = serverIPStr.c_str();
-    //strcmp(serverIP, "127.0.0.1");
-    cout << "HERE (3)" << endl;
     serverPort = 50000;
-    cout << "HERE (4)" << endl;
     addrLen = sizeof(struct sockaddr_in);
     cout << "HERE (5)" << endl;
     if((sokt = socket(PF_INET, SOCK_STREAM, 0)) < 0)

@@ -1,3 +1,13 @@
+/*
+ * File:   RosClient.h
+ * Author: James Kuczynski
+ * Email: jkuczyns@cs.uml.edu
+ * File Description: 
+ *
+ * Created July 6, 2015 at 10:30
+ */
+
+
 #ifndef ROS_CLIENT_H
 #define ROS_CLIENT_H
 
