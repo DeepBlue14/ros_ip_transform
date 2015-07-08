@@ -19,7 +19,7 @@ int main(int argc, char **argv)
     RosServer rosServer;
     NodeHandle nh;
     Publisher* mainsPub = rosServer.getPublisher();
-    Subscriber sub = nh.subscribe<sensor_msgs::Image>("/camera/rgb/image_rect_color",
+    Subscriber sub = nh.subscribe<sensor_msgs::Image>(/*"/usb_cam/image_raw"*/"/camera/rgb/image_rect_color",
                                                         10,
                                                         &RosServer::callback,
                                                         &rosServer);

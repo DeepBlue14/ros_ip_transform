@@ -27,7 +27,7 @@ void RosClient::callback(const sensor_msgs::ImageConstPtr& input)
 {
     //convert to OpenCV type- - - - - - - - - - - - - - - - - -
     cv_bridge::CvImagePtr cv_ptr;
-    cv::Mat img = Mat::zeros(480, 640, CV_8UC1);
+    cv::Mat img = Mat::zeros(480, 640, CV_8UC(3));
 
     try
     {
@@ -44,14 +44,14 @@ void RosClient::callback(const sensor_msgs::ImageConstPtr& input)
     
     
     int imgSize = img.total() * img.elemSize();
-    uchar *iptr = img.data;
+    unsigned char* iptr = img.data;
     int bytes = 0;
     
     if(!img.isContinuous() )
     {
         img = img.clone();
     }
-    
+    cout << "waiting for: " << imgSize << " bytes" << endl; //should be 921600
     namedWindow("Client", 1);
     
     if((bytes = recv(sokt, iptr, imgSize, MSG_WAITALL)) == -1)

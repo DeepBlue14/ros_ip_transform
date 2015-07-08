@@ -57,11 +57,12 @@ void RosServer::callback(const sensor_msgs::ImageConstPtr& input)
     cv::waitKey(3);
     
     imgGray = img.clone();
-    cvtColor(img, imgGray, CV_BGR2GRAY);
+    //cvtColor(img, imgGray, CV_BGR2GRAY);
     cv::imshow("About To Send", imgGray);
     cv::waitKey(3);
     
     int imgSize = imgGray.total() * imgGray.elemSize();
+    //cout << "sending: " << imgSize << " bytes" << endl;
     int bytes = 0;
     int key;
     
