@@ -4,9 +4,14 @@
 RosClient::RosClient()
 {
     pub = new Publisher();
-    serverPort = 50000;
+}
+
+
+bool RosClient::connect2Server(string address, int port)
+{
+    serverPort = port;
     addrLen = sizeof(struct sockaddr_in);
-    cout << "HERE (5)" << endl;
+
     if((sokt = socket(PF_INET, SOCK_STREAM, 0)) < 0)
     {
         cerr << "socket() failed" << endl;
@@ -23,37 +28,33 @@ RosClient::RosClient()
 }
 
 
-void RosClient::callback(const sensor_msgs::ImageConstPtr& input)
+void RosClient::spinTcp(int spinRate)
 {
-    //convert to OpenCV type- - - - - - - - - - - - - - - - - -
-    cv_bridge::CvImagePtr cv_ptr;
-    cv::Mat img = Mat::zeros(480, 640, CV_8UC(3));
+    boost::thread workerThread(&RosClient::subscribe, this, spinRate);
+    workerThread.join();
+    
+    //--------
+}
 
-    try
-    {
-        ;//cv_ptr = cv_bridge::toCvCopy(input/*, sensor_msgs::image_encodings::RGB16*//*RGB8*/);
-    }
-    catch(cv_bridge::Exception& e)
-    {
-        ROS_ERROR("cv_bridge exception: %s", e.what() );
-    }
-    
-    ;//img = cv_ptr->image;
-    //cv::imshow("Initial Image", img);
-    //cv::waitKey(3);
-    
-    
+
+void RosClient::subscribe(int spinRate)
+{
+ros::Rate r(100);
+while(ros::ok()){
+	cv_bridge::CvImage cv_ptr;
+    cv::Mat img = cv::Mat::zeros(480, 640, CV_8UC(3));
+  
     int imgSize = img.total() * img.elemSize();
     unsigned char* iptr = img.data;
     int bytes = 0;
-    
+ 
     if(!img.isContinuous() )
     {
         img = img.clone();
     }
     cout << "waiting for: " << imgSize << " bytes" << endl; //should be 921600
-    namedWindow("Client", 1);
-    
+    cv::namedWindow("Client", 1);
+   
     if((bytes = recv(sokt, iptr, imgSize, MSG_WAITALL)) == -1)
     {
         cerr << "recv failed, recieved bytes = " << bytes << endl;
@@ -61,9 +62,10 @@ void RosClient::callback(const sensor_msgs::ImageConstPtr& input)
     
     cv::imshow("Client", img);
     cv::waitKey(3);
-    
-    //cv_ptr->image = img;
-    //pub->publish(cv_ptr->toImageMsg() );
+
+    cv_ptr.image = img;
+    pub->publish(cv_ptr.toImageMsg() );
+    }
 }
 
 

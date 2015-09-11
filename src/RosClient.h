@@ -24,6 +24,7 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
+#include <boost/thread.hpp>
 
 #include <math.h>
 #include <stdlib.h>
@@ -43,6 +44,7 @@ using namespace ros;
 using namespace cv;
 using namespace std;
 
+
 class RosClient
 {   
     private:
@@ -56,7 +58,10 @@ class RosClient
         
     public:
         RosClient();
-        void callback(const sensor_msgs::ImageConstPtr& image);
+        bool connect2Server(string address, int port);
+        void spinTcp(int spinRate = 100);
+        void subscribe(int spinRate);
+        void closeConnection();
         Publisher* getPublisher();
         ~RosClient();
 
