@@ -1,4 +1,4 @@
-![Icon](https://github.com/DeepBlue14/image_transport_inverse/blob/master/icon.jpg)
+![Icon](https://github.com/DeepBlue14/ros_ip_transform/blob/master/icon.jpg)
 
 #image_transport_inverse
 
@@ -20,7 +20,7 @@
 
 ###**Project Synopsis**
 
-This project is the inverse of ROS's image_transport--instead of converting non-ros --> ros, this converts ros --> non-ros.  It will use a ROS subscriber to get sensor_msgs::Image, convert it to a OpenCV Mat, and use the C socket library to send it over "vanilla" TCP/IP.
+This project allows ROS topics to be transformed into TCP/IP streams.
 
 
 ###**Dependencies**
@@ -41,14 +41,14 @@ catkin_make
 **Run:**
 ```
 roslaunch openni2_launch openni2.launch
-rosrun image_transport_inverse RosServer
-rosrun image_transport_inverse RosClient
+rosrun ros_ip_transform RosServer
+rosrun ros_ip_transform RosClient
 ```
 
 
 ###**Future Work**
 
-Implementation has begun for RosTopic --> TCP conversions for other data types (for example, std_msgs to std types, or to  character arrays to facilitate conversion by other languages on the client side).
+Implementation has begun for RosTopic --> TCP conversions for other data types (for example, std_msgs to std types, or to  character arrays to facilitate conversion by other languages on the client side).  In addition, modifications will be made so that the server does not block even if a client is not requesting.
 
 
 [1]: http://robotics.cs.uml.edu/

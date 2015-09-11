@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(image_transport_inverse)
+project(ros_ip_transform)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -87,7 +87,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES image_transport_inverse
+#  LIBRARIES ros_ip_transform
 #  CATKIN_DEPENDS roscpp rospy sensor_msgs std_msgs
 #  DEPENDS system_lib
 )
@@ -105,19 +105,19 @@ include_directories(
 )
 
 ## Declare a cpp library
-# add_library(image_transport_inverse
-#   src/${PROJECT_NAME}/image_transport_inverse.cpp
+# add_library(ros_ip_transform
+#   src/${PROJECT_NAME}/ros_ip_transform.cpp
 # )
 
 ## Declare a cpp executable
-# add_executable(image_transport_inverse_node src/image_transport_inverse_node.cpp)
+# add_executable(iros_ip_transform_node src/ros_ip_transform_node.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
-# add_dependencies(image_transport_inverse_node image_transport_inverse_generate_messages_cpp)
+# add_dependencies(ros_ip_transform_node ros_ip_transform_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(image_transport_inverse_node
+# target_link_libraries(ros_ip_transform_node
 #   ${catkin_LIBRARIES}
 # )
 
@@ -136,7 +136,7 @@ include_directories(
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS image_transport_inverse image_transport_inverse_node
+# install(TARGETS ros_ip_transform ros_ip_transform_node
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -161,7 +161,7 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_image_transport_inverse.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_ros_ip_transform.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
@@ -172,11 +172,10 @@ include_directories(
 
 add_executable(RosClient src/RosClient_main.cpp
                          src/RosClient.cpp)
-target_link_libraries(RosClient ${catkin_LIBRARIES})
-target_link_libraries(RosClient ${OpenCV_LIBRARIES})
+target_link_libraries(RosClient ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
 add_executable(RosServer src/RosServer_main.cpp
                          src/RosServer.cpp)
-target_link_libraries(RosServer ${catkin_LIBRARIES})
-target_link_libraries(RosServer ${OpenCV_LIBRARIES})
+target_link_libraries(RosServer ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+
 
