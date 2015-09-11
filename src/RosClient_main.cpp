@@ -1,3 +1,14 @@
+/*
+ * File:   RosClient_main.cpp
+ * Author: James Kuczynski
+ * Email: jkuczyns@cs.uml.edu
+ * File Description: This is a example of how image_transport_inverse can be used
+ *                   to convert TCP/IP --> ROSTopic.
+ *
+ * Created July 6, 2015 at 10:30
+ */
+ 
+
 #include <ros/ros.h>
 #include <sensor_msgs/Image.h>
 

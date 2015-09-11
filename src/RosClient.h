@@ -2,7 +2,15 @@
  * File:   RosClient.h
  * Author: James Kuczynski
  * Email: jkuczyns@cs.uml.edu
- * File Description: 
+ * File Description: This program converts OpenCV matrix to sensor_msgs::Image,
+ *                   which recieves then sends over a TCP/IP connection and 
+ *                   publishes to a ros topic.  This allows it to be easily
+ *                   utalized by a client system running
+ *                   Windows, Linux, OS X, FreeBSD, NetBSD, OpenBSD,
+ *                   Android, IOS, Maemo, or BlackBerry, and using any
+ *                   language supported by OpenCV (C/C++, Java, Android,
+ *                   Python, and MATLAB/OCTAVE, as well as partial
+ *                   functionality for C#, Perl, Ruby, and Ch.
  *
  * Created July 6, 2015 at 10:30
  */
@@ -58,7 +66,7 @@ class RosClient
         
     public:
         RosClient();
-        bool connect2Server(string address, int port);
+        bool connect2Server(string address = "127.0.0.1", int port = 50000);
         void spinTcp(int spinRate = 100);
         void subscribe(int spinRate);
         void closeConnection();

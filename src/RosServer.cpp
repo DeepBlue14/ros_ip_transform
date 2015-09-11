@@ -11,7 +11,7 @@ RosServer::RosServer()
 }
 
 
-bool RosServer::connect(int port)
+bool RosServer::connect2Client(int port)
 {
     localSocket = socket(AF_INET, SOCK_STREAM, 0);
     if(localSocket == -1)
@@ -49,7 +49,7 @@ bool RosServer::connect(int port)
 
 void RosServer::publishTcp(const sensor_msgs::ImageConstPtr& msg)
 {
-    if(m_count > 10)
+    if(m_count > 10) // Reject the first 10, since some of the first images may contain discolorations
     {
         cv_bridge::CvImagePtr cv_ptr;
         cv::Mat img, imgGray;

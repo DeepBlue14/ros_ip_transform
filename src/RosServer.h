@@ -68,7 +68,7 @@ class RosServer
     public:
         RosServer();
         //void callback(const sensor_msgs::ImageConstPtr& image);
-        bool connect(int port);
+        bool connect2Client(int port);
         void publishTcp(const sensor_msgs::ImageConstPtr& msg);
         Publisher* getPublisher();
         ~RosServer();

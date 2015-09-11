@@ -39,32 +39,33 @@ void RosClient::spinTcp(int spinRate)
 
 void RosClient::subscribe(int spinRate)
 {
-ros::Rate r(100);
-while(ros::ok()){
-	cv_bridge::CvImage cv_ptr;
-    cv::Mat img = cv::Mat::zeros(480, 640, CV_8UC(3));
+    ros::Rate r(spinRate);
+    while(ros::ok() )
+    {
+	    cv_bridge::CvImage cv_ptr;
+        cv::Mat img = cv::Mat::zeros(480, 640, CV_8UC(3));
   
-    int imgSize = img.total() * img.elemSize();
-    unsigned char* iptr = img.data;
-    int bytes = 0;
+        int imgSize = img.total() * img.elemSize();
+        unsigned char* iptr = img.data;
+        int bytes = 0;
  
-    if(!img.isContinuous() )
-    {
-        img = img.clone();
-    }
-    cout << "waiting for: " << imgSize << " bytes" << endl; //should be 921600
-    cv::namedWindow("Client", 1);
+        if(!img.isContinuous() )
+        {
+            img = img.clone();
+        }
+        cout << "waiting for: " << imgSize << " bytes" << endl; //should be 921600
+        cv::namedWindow("Client", 1);
    
-    if((bytes = recv(sokt, iptr, imgSize, MSG_WAITALL)) == -1)
-    {
-        cerr << "recv failed, recieved bytes = " << bytes << endl;
-    }
+        if((bytes = recv(sokt, iptr, imgSize, MSG_WAITALL)) == -1)
+        {
+            cerr << "recv failed, recieved bytes = " << bytes << endl;
+        }
     
-    cv::imshow("Client", img);
-    cv::waitKey(3);
+        cv::imshow("Client", img);
+        cv::waitKey(3);
 
-    cv_ptr.image = img;
-    pub->publish(cv_ptr.toImageMsg() );
+        cv_ptr.image = img;
+        pub->publish(cv_ptr.toImageMsg() );
     }
 }
 
