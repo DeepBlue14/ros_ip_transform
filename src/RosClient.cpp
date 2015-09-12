@@ -80,3 +80,4 @@ RosClient::~RosClient()
 {
     close(sokt);
 }
+

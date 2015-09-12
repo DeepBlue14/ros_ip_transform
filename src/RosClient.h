@@ -48,12 +48,14 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 
+#include "RosIpT.h"
+
 using namespace ros;
 using namespace cv;
 using namespace std;
+using namespace RosIpT;
 
-
-class RosClient
+class RosIpT::RosClient
 {   
     private:
         Publisher* pub;

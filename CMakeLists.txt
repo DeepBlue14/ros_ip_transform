@@ -108,6 +108,8 @@ include_directories(
 # add_library(ros_ip_transform
 #   src/${PROJECT_NAME}/ros_ip_transform.cpp
 # )
+add_library(ros_ip_transform STATIC src/RosServer.cpp src/RosClient.cpp)
+
 
 ## Declare a cpp executable
 # add_executable(iros_ip_transform_node src/ros_ip_transform_node.cpp)

@@ -48,11 +48,14 @@
 #include <net/if.h>
 #include <unistd.h> 
 
+#include "RosIpT.h"
+
 using namespace ros;
 using namespace cv;
 using namespace std;
+using namespace RosIpT;
 
-class RosServer
+class RosIpT::RosServer
 {   
     private:
         static int m_comm_fd;

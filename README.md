@@ -37,6 +37,9 @@ and execute:
 ```
 catkin_make
 ```
+This will build the two example programs (a client and a server), as well as
+generate a static library.  Of course, the source files can be copied into a
+separate project location and linked and/or modified.
 
 **Run:**
 ```
