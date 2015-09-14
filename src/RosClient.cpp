@@ -60,10 +60,21 @@ void RosClient::subscribe(int spinRate)
         {
             cerr << "recv failed, recieved bytes = " << bytes << endl;
         }
-    
+        
+        //-----begin TESTING-----
+        for(size_t x = 0; x < img.cols; x++)
+        {
+            for(size_t y = 0; y < img.rows; y++)
+            {
+                Vec3b color = img.at<Vec3b>(Point(x, y));
+                img.at<Vec3b>(Point(x, y))[0] = color.val[2];
+                img.at<Vec3b>(Point(x, y))[2] = color.val[0];
+            }
+        }
         cv::imshow("Client", img);
         cv::waitKey(3);
-
+        //-----end TESTING-----
+        
         cv_ptr.image = img;
         pub->publish(cv_ptr.toImageMsg() );
     }

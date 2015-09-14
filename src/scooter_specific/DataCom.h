@@ -1,22 +1,5 @@
-/*
- * File:   RosServer.h
- * Author: James Kuczynski
- * Email: jkuczyns@cs.uml.edu
- * File Description: This program converts sensor_msgs::Image to OpenCV matrix,
- *                   which it then sends over a TCP/IP connection.  This allows
- *                   it to be easily recieved and decoded by a client system
- *                   running Windows, Linux, OS X, FreeBSD, NetBSD, OpenBSD,
- *                   Android, IOS, Maemo, or BlackBerry, and using any
- *                   language supported by OpenCV (C/C++, Java, Android,
- *                   Python, and MATLAB/OCTAVE, as well as partial
- *                   functionality for C#, Perl, Ruby, and Ch.
- *
- * Created July 6, 2015 at 10:30
- */
-
-
-#ifndef ROS_SERVER_H
-#define ROS_SERVER_H
+#ifndef DATA_COM_H
+#define DATA_COM_H
 
 #include <ros/ros.h>
 #include <ros/console.h>
@@ -48,14 +31,13 @@
 #include <net/if.h>
 #include <unistd.h> 
 
-#include "RosIpT.h"
 
 using namespace ros;
 using namespace cv;
 using namespace std;
-using namespace RosIpT;
 
-class RosIpT::RosServer
+
+class DataCom
 {   
     private:
         static int m_comm_fd;
@@ -70,15 +52,15 @@ class RosIpT::RosServer
         Publisher* pub;
         
     public:
-        RosServer();
+        DataCom();
         //void callback(const sensor_msgs::ImageConstPtr& image);
         bool connect2Client(int port);
         //void connectionBrokeHandler(int port);
         void publishTcp(const sensor_msgs::ImageConstPtr& msg);
         Publisher* getPublisher();
-        ~RosServer();
+        ~DataCom();
 
 };
 
 
-#endif /* ROS_SERVER_H */
+#endif /* DATA_COM_H */

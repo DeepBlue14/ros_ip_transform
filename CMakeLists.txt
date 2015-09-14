@@ -180,4 +180,9 @@ add_executable(RosServer src/RosServer_main.cpp
                          src/RosServer.cpp)
 target_link_libraries(RosServer ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
+#Frankenscooter-project specific:
+add_executable(DataCom src/scooter_specific/DataCom_main.cpp
+                       src/scooter_specific/DataCom.cpp)
+target_link_libraries(DataCom ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+
 

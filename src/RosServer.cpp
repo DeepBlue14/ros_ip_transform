@@ -18,11 +18,11 @@ bool RosServer::connect2Client(int port)
     {
         perror("socket() call failed!!");
     }
-    port = 50000;
+    m_port = port;
     addrLen = sizeof(struct sockaddr_in);
     localAddr.sin_family = AF_INET;
     localAddr.sin_addr.s_addr = INADDR_ANY;
-    localAddr.sin_port = htons(port);
+    localAddr.sin_port = htons(m_port);
     
     if(bind(localSocket, (struct sockaddr*)&localAddr, sizeof(localAddr)) < 0)
     {
@@ -33,7 +33,7 @@ bool RosServer::connect2Client(int port)
     listen(localSocket, 1);
     
     cout << "Waiting for connections...\n"
-              << "Server Port: " << port << endl;
+              << "Server Port: " << m_port << endl;
     
     remoteSocket = accept(localSocket, (struct sockaddr *)&remoteAddr, (socklen_t*)&addrLen);
     if(remoteSocket < 0)
@@ -56,7 +56,7 @@ void RosServer::publishTcp(const sensor_msgs::ImageConstPtr& msg)
 
         try
         {
-            cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
+            cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::RGB8);
         }
         catch(cv_bridge::Exception& e)
         {
