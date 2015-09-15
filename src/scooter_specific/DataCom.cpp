@@ -120,7 +120,13 @@ void DataCom::publishTcp(const sensor_msgs::ImageConstPtr& msg)
         cout << "Skipping tcp transfer" << endl;
     }*/
     //ssize_t wretn = write(m_comm_fd, str2, 
-
+    
+    
+    geometry_msgs::Point pixelPoint;
+    pixelPoint.x = x;
+    pixelPoint.y = y;
+    
+    pub->publish(pixelPoint);
 }
 
 

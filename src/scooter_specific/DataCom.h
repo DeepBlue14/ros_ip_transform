@@ -5,6 +5,7 @@
 #include <ros/console.h>
 
 #include <sensor_msgs/Image.h>
+#include <geometry_msgs/Point.h>
 
 #include <opencv/cv.h>
 #include <image_transport/image_transport.h>

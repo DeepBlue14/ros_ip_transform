@@ -5,6 +5,7 @@ project(ros_ip_transform)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
+
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
@@ -22,10 +23,11 @@ find_package(catkin REQUIRED COMPONENTS
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
-find_package(Qt5 5.5.0 REQUIRED COMPONENTS
-	QtCore QtWebSockets)
-include(${QT_USE_FILE})
-ADD_DEFINITIONS(${QT_DEFINITIONS})
+#set(QT_QMAKE_EXECUTABLE "usr/include/Qt5_5/5.5/gcc_64/bin/qmake")
+#set(QT5_QGLOBAL_FILE "usr/include/Qt/5.5/gcc_64/include/QtCore/QtGlobal")
+#find_package(Qt 5 REQUIRED QtCore)
+#include(${QT_USE_FILE})
+#ADD_DEFINITIONS(${QT_DEFINITIONS})
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -189,13 +191,13 @@ add_executable(RosServer src/RosServer_main.cpp
 target_link_libraries(RosServer ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
 
-add_executable(RosClientWs src/RosClientWs_main.cpp
-                         src/RosClientWs.cpp)
-target_link_libraries(RosClientWs ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${QT_LIBRARIES})
+#add_executable(RosClientWs src/RosClientWs_main.cpp
+#                         src/RosClientWs.cpp)
+#target_link_libraries(RosClientWs ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${QT_LIBRARIES})
 
-add_executable(RosServerWs src/RosServerWs_main.cpp
-                         src/RosServerWs.cpp)
-target_link_libraries(RosServerWs ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${QT_LIBRARIES})
+#add_executable(RosServerWs src/RosServerWs_main.cpp
+#                         src/RosServerWs.cpp)
+#target_link_libraries(RosServerWs ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${QT_LIBRARIES})
 
 
 #Frankenscooter-project specific:
