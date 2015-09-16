@@ -2,8 +2,10 @@ cmake_minimum_required(VERSION 2.8.3)
 project(ros_ip_transform)
 
 
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(Qt5_DIR "/opt/Qt/5.5/gcc_64/lib/cmake/Qt5") #Needed for ROS only; works find without it in vanilla CMake
 set(CMAKE_AUTOMOC ON)
+set(QT_QMAKE_EXECUTABLE "/opt/Qt/5.5/gcc_64/bin/qmake")
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 
 ## Find catkin macros and libraries
@@ -23,12 +25,16 @@ find_package(catkin REQUIRED COMPONENTS
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
-#set(QT_QMAKE_EXECUTABLE "usr/include/Qt5_5/5.5/gcc_64/bin/qmake")
-#set(QT5_QGLOBAL_FILE "usr/include/Qt/5.5/gcc_64/include/QtCore/QtGlobal")
-#find_package(Qt 5 REQUIRED QtCore)
-#include(${QT_USE_FILE})
-#ADD_DEFINITIONS(${QT_DEFINITIONS})
 
+find_package(Qt5 5.5.0 EXACT REQUIRED COMPONENTS Core WebSockets)
+add_definitions(${QT_DEFINITIONS})
+include_directories({QT_LIBRARY_DIRS})
+add_definitions(${QT_DEFINITIONS})
+
+
+#include_directories(${QT_INCLUDE_DIRS})
+#link_directories(${QT_LIBRARY_DIRS})
+#add_definitions(${QT_DEFINITIONS})
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -191,13 +197,17 @@ add_executable(RosServer src/RosServer_main.cpp
 target_link_libraries(RosServer ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
 
+
 #add_executable(RosClientWs src/RosClientWs_main.cpp
 #                         src/RosClientWs.cpp)
-#target_link_libraries(RosClientWs ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${QT_LIBRARIES})
+#target_link_libraries(RosClientWs ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+#qt5_use_modules(RosClientWs Core WebSockets)
 
 #add_executable(RosServerWs src/RosServerWs_main.cpp
 #                         src/RosServerWs.cpp)
-#target_link_libraries(RosServerWs ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${QT_LIBRARIES})
+#target_link_libraries(RosServerWs ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+#qt5_use_modules(RosServerWs Core WebSockets)
+
 
 
 #Frankenscooter-project specific:
@@ -205,4 +215,24 @@ add_executable(DataCom src/scooter_specific/DataCom_main.cpp
                        src/scooter_specific/DataCom.cpp)
 target_link_libraries(DataCom ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
+
+##---------------------------------------------------------------------------------
+##For Generic CMake
+##cmake_minimum_required(VERSION 2.8.3)
+##project(TestApp)
+
+##set(CMAKE_AUTOMOC ON)
+##set(QT_QMAKE_EXECUTABLE "/opt/Qt/5.5/gcc_64/bin/qmake") # QT 5.5.0 installed @ /opt/Qt
+##set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+
+##find_package(Qt5 5.5.0 EXACT REQUIRED COMPONENTS Core WebSockets)
+##add_definitions(${QT_DEFINITIONS})
+##include_directories({QT_LIBRARY_DIRS})
+##add_definitions(${QT_DEFINITIONS})
+
+
+
+##add_executable(main main.cpp)
+##qt5_use_modules(main Core WebSockets)
 
