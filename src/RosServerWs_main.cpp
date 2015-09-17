@@ -5,12 +5,14 @@
  * File Description: This is a example of how ros_ip_transform can be used
  *                   to convert ROSTopic --> TCP/IP.
  *
- * Created July 6, 2015 at 10:30
+ * Created September 17, 2015 at 6:00pm
  */
 
 
 #include <ros/ros.h>
 #include <sensor_msgs/Image.h>
+
+#include <QCoreApplication>
 
 #include <iostream>
 #include <string>
@@ -21,26 +23,19 @@
 using namespace ros;
 using namespace std;
 
-RosServerWs rosServerWs;
-
-void callback(const sensor_msgs::ImageConstPtr& msg)
-{
-    rosServerWs.publishTcp(msg);
-}
-
-
 int main(int argc, char **argv)
 {
     init(argc, argv, "RosServerWs");
-
     ROS_INFO("Starting RosServerWs");
 
+    QCoreApplication app(argc, argv);
+    RosServerWs server(1234);
+    
     NodeHandle nh;
-    Subscriber sub = nh.subscribe<sensor_msgs::Image>(/*"/usb_cam/image_raw"*/"/camera/rgb/image_rect_color", 10, callback);
+    //Subscriber sub = nh.subscribe<sensor_msgs::Image>(/*"/usb_cam/image_raw"*/"/camera/rgb/image_rect_color", 10, callback);
 
-    rosServerWs.connect2Client(50000);
-    ros::spin();
+    //rosServer.connect2Client(50000);
+    //ros::spin();
 
-
-    return EXIT_SUCCESS;
+    return app.exec();
 }

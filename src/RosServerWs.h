@@ -11,7 +11,7 @@
  *                   Python, and MATLAB/OCTAVE, as well as partial
  *                   functionality for C#, Perl, Ruby, and Ch.
  *
- * Created July 6, 2015 at 10:30
+ * Created September 17, 2015 at 6:00pm
  */
 
 
@@ -31,6 +31,12 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
+#include <QObject>
+#include <QVector>
+#include <QByteArray>
+
+#include <QWebSocketServer>
+#include <QWebSocket>
 
 #include <math.h>
 #include <stdlib.h>
@@ -55,26 +61,25 @@ using namespace cv;
 using namespace std;
 using namespace RosIpT;
 
-class RosIpT::RosServerWs
-{   
+
+class RosIpT::RosServerWs : public QObject
+{
+    Q_OBJECT
+    
     private:
-        static int m_comm_fd;
-        int m_port;
-        int m_count;
-        int localSocket;
-        int remoteSocket;
-        int port;
-        struct sockaddr_in localAddr,
-                           remoteAddr;
-        int addrLen;
+        QWebSocketServer* webSocketServer;
+        QVector<QWebSocket*>* clientVecPtr;
         Publisher* pub;
         
+        
+    private slots:
+        void handleConnectSlot();
+        void handleRecv(QString message);
+        void handleSockDisconnect();
+    
+    
     public:
-        RosServerWs();
-        //void callback(const sensor_msgs::ImageConstPtr& image);
-        bool connect2Client(int port);
-        //void connectionBrokeHandler(int port);
-        void publishTcp(const sensor_msgs::ImageConstPtr& msg);
+        RosServerWs(uint16_t port, QObject* parent = 0);
         Publisher* getPublisher();
         ~RosServerWs();
 

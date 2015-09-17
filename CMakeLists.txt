@@ -198,15 +198,15 @@ target_link_libraries(RosServer ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
 
 
-#add_executable(RosClientWs src/RosClientWs_main.cpp
-#                         src/RosClientWs.cpp)
-#target_link_libraries(RosClientWs ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
-#qt5_use_modules(RosClientWs Core WebSockets)
+add_executable(RosClientWs src/RosClientWs_main.cpp
+                         src/RosClientWs.cpp)
+target_link_libraries(RosClientWs ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+qt5_use_modules(RosClientWs Core WebSockets)
 
-#add_executable(RosServerWs src/RosServerWs_main.cpp
-#                         src/RosServerWs.cpp)
-#target_link_libraries(RosServerWs ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
-#qt5_use_modules(RosServerWs Core WebSockets)
+add_executable(RosServerWs src/RosServerWs_main.cpp
+                         src/RosServerWs.cpp)
+target_link_libraries(RosServerWs ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+qt5_use_modules(RosServerWs Core WebSockets)
 
 
 

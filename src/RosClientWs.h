@@ -12,7 +12,7 @@
  *                   Python, and MATLAB/OCTAVE, as well as partial
  *                   functionality for C#, Perl, Ruby, and Ch.
  *
- * Created July 6, 2015 at 10:30
+ * Created September 17, 2015 at 6:00pm
  */
 
 
@@ -34,8 +34,8 @@
 
 #include <boost/thread.hpp>
 
-#include <QtCore/QObject>
-#include <QtWebSockets/QWebSocket>
+#include <QObject>
+#include <QWebSocket>
 
 #include <math.h>
 #include <stdlib.h>
@@ -58,25 +58,30 @@ using namespace cv;
 using namespace std;
 using namespace RosIpT;
 
-class RosIpT::RosClientWs
+class RosIpT::RosClientWs : public QObject
 {   
+    Q_OBJECT
+    
     private:
+        QWebSocket webSocket;
+        QUrl* urlPtr;
         Publisher* pub;
-        int sokt;
-        string serverIPStr;
-        char* serverIP;
-        int serverPort;
-        struct sockaddr_in serverAddr;
-        socklen_t addrLen;
+    
         
+    signals:
+        void signalClosed();
+        
+        
+    private slots:
+        void handleConnectRequest();
+        void handleRecv(QString message);
+    
+    
     public:
-        RosClientWs();
-        bool connect2Server(string address = "127.0.0.1", int port = 50000);
-        void spinTcp(int spinRate = 100);
-        void subscribe(int spinRate);
-        void closeConnection();
+        RosClientWs(const QUrl& url, QObject* parent = 0);
         Publisher* getPublisher();
         ~RosClientWs();
+
 
 };
 
