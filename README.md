@@ -20,7 +20,7 @@
 
 ###**Project Synopsis**
 
-This project allows ROS topics to be transformed into TCP/IP streams.
+This project provides a framework for transformations between ROS topics and TCP/IP streams.  Using this API, the user can create a simple subscriber and/or publisher to run on the ROS system.  The syntax is almost identical to those provided by ROS, but these will implicitly carry out the specified transform.
 
 
 ###**Dependencies**
@@ -28,8 +28,14 @@ This project allows ROS topics to be transformed into TCP/IP streams.
 - [ROS][3] (tested with indigo on 14.04 LTS)
 - [OpenCV][4] (tested with 2.4.8)
 - [Boost C++ Libraries][5]
+- [QT][6] >= 5.3 *(Only required for websocket classes)*
+
 
 ###**Install**
+
+If you wish to use the websocket modules, install [QT][6] >= 5.3 using the installer script.
+Install it at ```/opt/Qt```, which is QT's default installaction location.
+
 
 **Build:**
 ```cd``` to the catkin directory where this package resides
@@ -41,6 +47,7 @@ This will build the two example programs (a client and a server), as well as
 generate a static library.  Of course, the source files can be copied into a
 separate project location and linked and/or modified.
 
+
 **Run:**
 ```
 roslaunch openni2_launch openni2.launch
@@ -51,7 +58,7 @@ rosrun ros_ip_transform RosClient
 
 ###**Future Work**
 
-Implementation has begun for RosTopic --> TCP conversions for other data types (for example, std_msgs to std types, or to  character arrays to facilitate conversion by other languages on the client side).  In addition, modifications will be made so that the server does not block even if a client is not requesting.
+Implementation has begun for RosTopic --> TCP conversions for other data types (for example, std_msgs to std types, or to character arrays to facilitate conversion by other languages on the client side).  In addition, modifications will be made so that the server does not block even if a client is not requesting.
 
 
 [1]: http://robotics.cs.uml.edu/
@@ -59,4 +66,4 @@ Implementation has begun for RosTopic --> TCP conversions for other data types (
 [3]: http://www.ros.org/
 [4]: http://opencv.org/
 [5]: http://www.boost.org/
-
+[6]: http://www.qt.io/
