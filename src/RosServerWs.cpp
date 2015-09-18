@@ -53,6 +53,18 @@ void RosServerWs::handleSockDisconnect()
 }
 
 
+void RosServerWs::connect2Client(int port)
+{
+    ;
+}
+
+
+void RosServerWs::publishWs(const std_msgs::String::ConstPtr& msg)
+{
+    cout << "at publishWs(...)" << endl;
+}
+
+
 Publisher* RosServerWs::getPublisher()
 {
     return pub;

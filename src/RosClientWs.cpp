@@ -12,7 +12,7 @@ RosClientWs::RosClientWs(const QUrl& url, QObject* parent) : QObject(parent)
 }
 
 
-void RosClientWs::handleConnectRequest()
+void RosClientWs::handleConnectRequest() //ROS note: ignoring this method for now
 {
     cout << "WebSocket connected" << endl;
     connect(&webSocket, &QWebSocket::textMessageReceived, this, &RosClientWs::handleRecv);

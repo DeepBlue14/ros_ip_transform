@@ -21,7 +21,7 @@
 #include <ros/ros.h>
 #include <ros/console.h>
 
-#include <sensor_msgs/Image.h>
+#include <std_msgs/String.h>
 
 #include <opencv/cv.h>
 #include <image_transport/image_transport.h>
@@ -80,6 +80,8 @@ class RosIpT::RosServerWs : public QObject
     
     public:
         RosServerWs(uint16_t port, QObject* parent = 0);
+        void connect2Client(int port);
+        void publishWs(const std_msgs::String::ConstPtr& msg);
         Publisher* getPublisher();
         ~RosServerWs();
 
