@@ -10,7 +10,7 @@
  
 
 #include <ros/ros.h>
-#include <sensor_msgs/Image.h>
+#include <std_msgs/String.h>
 
 #include <QCoreApplication>
 
@@ -31,7 +31,13 @@ int main(int argc, char **argv)
     QCoreApplication app(argc, argv);
 
     RosClientWs client(QUrl(QStringLiteral("ws://localhost:1234")) );
-    QObject::connect(&client, &RosClientWs::signalClosed, &app, &QCoreApplication::quit);
+    client.connect2Server(&client, &app);
+    
+    NodeHandle nh;
+    Publisher* mainsPub = client.getPublisher();
+    *mainsPub = nh.advertise<std_msgs::String>("/test/std_msgs/chatter", 10);
+    
+    client.spinWs();
 
-    return app.exec();
+    return EXIT_SUCCESS;
 }

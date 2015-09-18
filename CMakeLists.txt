@@ -236,3 +236,20 @@ target_link_libraries(DataCom ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 ##add_executable(main main.cpp)
 ##qt5_use_modules(main Core WebSockets)
 
+##----------------------------------------------------------------------------------
+##QT w/ 14.04
+##
+##find_package(Qt REQUIRED COMPONENTS QtCore QtGui QtWidgets)
+##include(${QT_USE_FILE})
+##ADD_DEFINITIONS(${QT_DEFINITIONS})
+
+##set(CMAKE_AUTOMOC ON)
+
+
+##add_executable(rqt2_image_view src/main.cpp
+##                               src/Spinner.cpp
+##                               src/MasterGui.cpp)
+##target_link_libraries(rqt2_image_view ${catkin_LIBRARIES})
+##target_link_libraries(rqt2_image_view ${QT_LIBRARIES})
+##target_link_libraries(rqt2_image_view ${OpenCV_LIBRARIES})
+

@@ -42,6 +42,7 @@ void DataCom::publishTcp(const sensor_msgs::ImageConstPtr& msg)
     bzero(str, 100);
     cout << "blocking before read..." << endl;
     ssize_t rretn = read(m_comm_fd, str, 100);
+    cout << "read: " << str << endl;
     
     int delimCounter = 0;
     string xStr, yStr;
@@ -113,6 +114,12 @@ void DataCom::publishTcp(const sensor_msgs::ImageConstPtr& msg)
         {
             cout << "successfully sent message" << endl;
         }
+        
+        char runRobot[100];
+        bzero(runRobot, 100);
+        ssize_t rretn2 = read(m_comm_fd, runRobot, 100);
+        cout << "Run robot?: " << runRobot << endl;
+        
     /*}
     else
     {

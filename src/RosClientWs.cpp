@@ -24,7 +24,24 @@ void RosClientWs::handleConnectRequest()
 void RosClientWs::handleRecv(QString message)
 {
     cout << "Message received:" << message.toStdString() << endl;
-    //webSocket.close(); //disconnect
+    
+    std_msgs::String rosStr;
+    rosStr.data = message.toStdString();
+    
+    pub->publish(rosStr);
+}
+
+
+void RosClientWs::connect2Server(RosClientWs* client, QCoreApplication* app)
+{
+    appPtr = app;
+    connect(client, &RosClientWs::signalClosed, app, &QCoreApplication::quit);
+}
+
+
+void RosClientWs::spinWs()
+{
+    appPtr->exec();
 }
 
 

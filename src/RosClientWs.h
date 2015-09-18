@@ -22,7 +22,7 @@
 #include <ros/ros.h>
 #include <ros/console.h>
 
-#include <sensor_msgs/Image.h>
+#include <std_msgs/String.h>
 
 #include <opencv/cv.h>
 #include <image_transport/image_transport.h>
@@ -36,6 +36,7 @@
 
 #include <QObject>
 #include <QWebSocket>
+#include <QCoreApplication>
 
 #include <math.h>
 #include <stdlib.h>
@@ -66,6 +67,7 @@ class RosIpT::RosClientWs : public QObject
         QWebSocket webSocket;
         QUrl* urlPtr;
         Publisher* pub;
+         QCoreApplication* appPtr;
     
         
     signals:
@@ -79,6 +81,8 @@ class RosIpT::RosClientWs : public QObject
     
     public:
         RosClientWs(const QUrl& url, QObject* parent = 0);
+        void connect2Server(RosClientWs* client, QCoreApplication* app);
+        void spinWs();
         Publisher* getPublisher();
         ~RosClientWs();
 
