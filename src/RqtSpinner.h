@@ -1,3 +1,15 @@
+/**
+ * File: 
+ * Module: 
+ * Author: 
+ * Email: 
+ * File Description:
+ *
+ * Created: 
+ * Last Modified: 
+ */
+
+
 //#include <QtGui>
 //#include <QApplication>
 #include <ros/ros.h>
@@ -6,14 +18,14 @@
 
 #include "RqtServer.h"
 
-class Spinner
+class RqtSpinner
 {
     private:
         bool shutdown_required;
         ecl::Thread thread; // similarly, a boost thread 
         
     public:
-        Spinner();
+        RqtSpinner();
         void spin();
-        ~Spinner();
+        ~RqtSpinner();
 };

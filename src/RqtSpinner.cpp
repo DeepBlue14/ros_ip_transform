@@ -1,15 +1,15 @@
-#include "Spinner.h"
+#include "RqtSpinner.h"
 
 
-Spinner::Spinner() :
+RqtSpinner::RqtSpinner() :
             shutdown_required(false),
-            thread(&Spinner::spin, *this)
+            thread(&RqtSpinner::spin, *this)
 {
     ;
 }
 
 
-void Spinner::spin()
+void RqtSpinner::spin()
 {
     ros::Rate loop(10);
     sleep(1);
@@ -22,7 +22,7 @@ void Spinner::spin()
 }
 
 
-Spinner::~Spinner()
+RqtSpinner::~RqtSpinner()
 {
     shutdown_required = true;
     thread.join();

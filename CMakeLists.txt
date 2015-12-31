@@ -200,7 +200,7 @@ target_link_libraries(RosServer ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
 add_executable(rqt_server src/RqtServer_main.cpp
                           src/RqtServer.cpp
-                          src/Spinner.cpp)
+                          src/RqtSpinner.cpp)
 target_link_libraries(rqt_server ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 qt5_use_modules(rqt_server Core WebSockets)
 
