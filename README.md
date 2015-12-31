@@ -1,6 +1,6 @@
 ![Icon](https://github.com/DeepBlue14/ros_ip_transform/blob/master/icon.jpg)
 
-#image_transport_inverse
+#image_ip_transform
 
 *Author/Maintainer:* James Kuczynski,  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Undergraduate Researcher,  
@@ -48,13 +48,19 @@ generate a static library.  Of course, the source files can be copied into a
 separate project location and linked and/or modified.
 
 
-**Run:**
+**Run (standard TCP):**
 ```
 roslaunch openni2_launch openni2.launch
 rosrun ros_ip_transform RosServer
 rosrun ros_ip_transform RosClient
 ```
 
+**Run (websockets)**
+```
+roscore &
+rosrun ros_ip_transform rqt_server
+```
+Then start one or more clients by running the chatclient.html file located in the src folder.
 
 ###**Future Work**
 

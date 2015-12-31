@@ -21,12 +21,14 @@ find_package(catkin REQUIRED COMPONENTS
   pcl_conversions
   dynamic_reconfigure
   cv_bridge
+  ecl_threads
 )
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
-find_package(Qt5 5.5.0 EXACT REQUIRED COMPONENTS Core WebSockets)
+find_package(Qt5 5.5.1 EXACT REQUIRED COMPONENTS Core Gui Widgets WebSockets)
+#include(${QT_USE_FILE})
 add_definitions(${QT_DEFINITIONS})
 include_directories({QT_LIBRARY_DIRS})
 add_definitions(${QT_DEFINITIONS})
@@ -196,17 +198,11 @@ add_executable(RosServer src/RosServer_main.cpp
                          src/RosServer.cpp)
 target_link_libraries(RosServer ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
-
-
-add_executable(RosClientWs src/RosClientWs_main.cpp
-                         src/RosClientWs.cpp)
-target_link_libraries(RosClientWs ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
-qt5_use_modules(RosClientWs Core WebSockets)
-
-add_executable(RosServerWs src/RosServerWs_main.cpp
-                         src/RosServerWs.cpp)
-target_link_libraries(RosServerWs ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
-qt5_use_modules(RosServerWs Core WebSockets)
+add_executable(rqt_server src/RqtServer_main.cpp
+                          src/RqtServer.cpp
+                          src/Spinner.cpp)
+target_link_libraries(rqt_server ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+qt5_use_modules(rqt_server Core WebSockets)
 
 
 
@@ -222,11 +218,11 @@ target_link_libraries(DataCom ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 ##project(TestApp)
 
 ##set(CMAKE_AUTOMOC ON)
-##set(QT_QMAKE_EXECUTABLE "/opt/Qt/5.5/gcc_64/bin/qmake") # QT 5.5.0 installed @ /opt/Qt
+##set(QT_QMAKE_EXECUTABLE "/opt/Qt/5.5/gcc_64/bin/qmake") # QT 5.5.1 installed @ /opt/Qt
 ##set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 
-##find_package(Qt5 5.5.0 EXACT REQUIRED COMPONENTS Core WebSockets)
+##find_package(Qt5 5.5.1 EXACT REQUIRED COMPONENTS Core WebSockets)
 ##add_definitions(${QT_DEFINITIONS})
 ##include_directories({QT_LIBRARY_DIRS})
 ##add_definitions(${QT_DEFINITIONS})
