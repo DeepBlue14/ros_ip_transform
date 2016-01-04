@@ -1,17 +1,19 @@
 /**
- * File: 
- * Module: 
- * Author: 
- * Email: 
- * File Description:
+ * File:   RqtServer_main.cpp
+ * Module: ros_ip_transforms
+ * Author: James Kuczynski
+ * Email: jkuczyns@cs.uml.edu
+ * File Description: 
  *
  * TODO: use global variable/buffer to pass data between threads?
+ *       Or have spinner call RqtServer slot directly?
  *
- * Created: 
- * Last Modified: 
+ * Created: 1/01/2016
+ * Last Modified: 1/03/2016
  */
 
 #include <ros/ros.h>
+#include <std_msgs/String.h>
 
 #include <QtCore/QCoreApplication>
 

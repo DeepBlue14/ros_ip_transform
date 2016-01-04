@@ -189,6 +189,8 @@ add_library(ros_ip_transform STATIC src/RosServer.cpp src/RosClient.cpp)
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
+add_executable(chatterbot src/Chatterbot.cpp)
+target_link_libraries(chatterbot ${catkin_LIBRARIES})
 
 add_executable(RosClient src/RosClient_main.cpp
                          src/RosClient.cpp)

@@ -1,12 +1,12 @@
 /**
- * File: 
- * Module: 
- * Author: 
- * Email: 
+ * File:   RqtServer.h
+ * Module: ros_ip_transform
+ * Author: James Kuczynski
+ * Email: jkuczyns@cs.uml.edu
  * File Description:
  *
- * Created: 
- * Last Modified: 
+ * Created: 1/01/2016
+ * Last Modified: 1/03/2016
  */
  
 
@@ -14,6 +14,7 @@
 #define RQT_SERVER_H
 
 #include <ros/ros.h>
+#include <std_msgs/String.h>
 
 #include <QtCore/QObject>
 #include <QtCore/QList>
@@ -35,6 +36,7 @@ private Q_SLOTS:
     void socketDisconnected();
 
 private:
+    ros::Publisher* pubPtr;
     QWebSocketServer* m_pWebSocketServer;
     QList<QWebSocket*> m_clients;
 };

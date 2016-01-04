@@ -13,6 +13,7 @@ RqtServer::RqtServer(quint16 port, QObject* parent) :
     m_pWebSocketServer(Q_NULLPTR),
     m_clients()
 {
+    pubPtr = new ros::Publisher();
     m_pWebSocketServer = new QWebSocketServer(QStringLiteral("Chat Server"),
                                               QWebSocketServer::NonSecureMode,
                                               this);
@@ -49,6 +50,11 @@ void RqtServer::processMessage(QString message)
             pClient->sendTextMessage(message);
         }
     }
+    
+    std_msgs::String msg;
+    std::stringstream ss;
+    ss << message.toStdString();
+    msg.data = ss.str();
 }
 
 void RqtServer::socketDisconnected()
