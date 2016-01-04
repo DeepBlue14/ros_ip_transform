@@ -24,10 +24,10 @@ int main(int argc, char *argv[])
 {
     ros::init(argc, argv, "RqtServer");
     ros::NodeHandle node;
-    RqtSpinner spinner;
 
     QCoreApplication app(argc, argv);
     RqtServer server(1234);
+    RqtSpinner spinner(&server);
     int result = app.exec();
 
     return result;

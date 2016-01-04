@@ -27,7 +27,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
-find_package(Qt5 5.5.1 EXACT REQUIRED COMPONENTS Core Gui Widgets WebSockets)
+find_package(Qt5 5.5.0 EXACT REQUIRED COMPONENTS Core Gui Widgets WebSockets)
 #include(${QT_USE_FILE})
 add_definitions(${QT_DEFINITIONS})
 include_directories({QT_LIBRARY_DIRS})
@@ -189,8 +189,8 @@ add_library(ros_ip_transform STATIC src/RosServer.cpp src/RosClient.cpp)
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-add_executable(chatterbot src/Chatterbot.cpp)
-target_link_libraries(chatterbot ${catkin_LIBRARIES})
+add_executable(rqt_chatterbot src/Chatterbot.cpp)
+target_link_libraries(rqt_chatterbot ${catkin_LIBRARIES})
 
 add_executable(RosClient src/RosClient_main.cpp
                          src/RosClient.cpp)

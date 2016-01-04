@@ -26,6 +26,21 @@ RqtServer::RqtServer(quint16 port, QObject* parent) :
 }
 
 
+void RqtServer::messageBridge(const std_msgs::String::ConstPtr& msg)
+{
+    //convert ROS string --> STD string --> QT string
+    std::string stdMsg = msg->data;
+    qtMsg = QString::fromStdString(stdMsg);
+    
+    //FIXME: ???should it make one falseprince socket in the constructor; or create one for each subscriber???
+    QWebSocket falsePrince;
+    connect(&falsePrince, &QWebSocket::textMessageReceived, this, &RqtServer::processMessage);
+    
+    std::cout << "about to emit signal" << std::endl;
+    emit falsePrince.textMessageReceived(qtMsg);
+}
+
+
 void RqtServer::onNewConnection()
 {
 	std::cout << "@ RqtServer::onNewConnection()" << std::endl;
@@ -37,6 +52,7 @@ void RqtServer::onNewConnection()
     m_clients << pSocket;
 }
 
+
 void RqtServer::processMessage(QString message)
 {
 	std::cout << "@ RqtServer::processMessage(...)" << std::endl;
@@ -44,6 +60,7 @@ void RqtServer::processMessage(QString message)
     QWebSocket* pSender = qobject_cast<QWebSocket*>(sender() );
     Q_FOREACH (QWebSocket* pClient, m_clients)
     {
+        std::cout << "looping" << std::endl;
         if(pClient != pSender) //don't echo message back to sender
         {
             std::cout << "(RqtServer) sending message: \"" << message.toStdString() << std::endl;

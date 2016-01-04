@@ -24,9 +24,9 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "talker");
     
     ros::NodeHandle nh;
-    ros::Publisher chatter_pub = nh.advertise<std_msgs::String>("chatter", 1000);
+    ros::Publisher chatter_pub = nh.advertise<std_msgs::String>("chatter", 1);
     
-    ros::Rate loop_rate(10);
+    ros::Rate loop_rate(1); //1 hz
     
     //int count = 0;
     while(ros::ok() )

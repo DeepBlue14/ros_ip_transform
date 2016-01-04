@@ -22,12 +22,14 @@
 class RqtSpinner
 {    
 public:
-    RqtSpinner();
+    RqtSpinner(RqtServer* rqtServer);
     void spin();
     void callback(const std_msgs::String::ConstPtr& msg);
+    void setRqtServer(RqtServer* rqtServer);
     ~RqtSpinner();
         
 private:
+    RqtServer* rqtServer;
     bool shutdown_required;
     ecl::Thread thread; // similarly, a boost thread
 };

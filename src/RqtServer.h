@@ -19,6 +19,9 @@
 #include <QtCore/QObject>
 #include <QtCore/QList>
 #include <QtCore/QByteArray>
+#include <QtCore/QString>
+
+#include <string>
 
 QT_FORWARD_DECLARE_CLASS(QWebSocketServer)
 QT_FORWARD_DECLARE_CLASS(QWebSocket)
@@ -28,6 +31,7 @@ class RqtServer : public QObject
     Q_OBJECT
 public:
     explicit RqtServer(quint16 port, QObject *parent = Q_NULLPTR);
+    void messageBridge(const std_msgs::String::ConstPtr& msg);
     virtual ~RqtServer();
 
 private Q_SLOTS:
@@ -36,6 +40,7 @@ private Q_SLOTS:
     void socketDisconnected();
 
 private:
+    QString qtMsg;
     ros::Publisher* pubPtr;
     QWebSocketServer* m_pWebSocketServer;
     QList<QWebSocket*> m_clients;

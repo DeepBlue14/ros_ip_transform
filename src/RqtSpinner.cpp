@@ -1,11 +1,11 @@
 #include "RqtSpinner.h"
 
 
-RqtSpinner::RqtSpinner() :
+RqtSpinner::RqtSpinner(RqtServer* rqtServer) :
             shutdown_required(false),
             thread(&RqtSpinner::spin, *this)
 {
-    ;
+    this->rqtServer = rqtServer;
 }
 
 
@@ -21,14 +21,22 @@ void RqtSpinner::spin()
     {
         ros::spinOnce();
         loop.sleep();
-        ROS_INFO("Spinning!");
+        //ROS_INFO("Spinning!");
     }
 }
 
 
 void RqtSpinner::callback(const std_msgs::String::ConstPtr& msg)
 {
-    ROS_INFO("I heard: [%s]", msg->data.c_str() );
+    //ROS_INFO("I heard: [%s]", msg->data.c_str() );
+    
+    rqtServer->messageBridge(msg);
+}
+
+
+void RqtSpinner::setRqtServer(RqtServer* rqtServer)
+{
+    this->rqtServer = rqtServer;
 }
 
 
