@@ -6,7 +6,7 @@
  * File Description:
  *
  * Created: 1/01/2016
- * Last Modified: 1/03/2016
+ * Last Modified: 1/05/2016
  */
  
 
@@ -32,6 +32,7 @@ class RqtServer : public QObject
 public:
     explicit RqtServer(quint16 port, QObject *parent = Q_NULLPTR);
     void messageBridge(const std_msgs::String::ConstPtr& msg);
+    ros::Publisher* getPublisher();
     virtual ~RqtServer();
 
 private Q_SLOTS:

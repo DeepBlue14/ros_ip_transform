@@ -5,6 +5,9 @@ RqtSpinner::RqtSpinner(RqtServer* rqtServer) :
             shutdown_required(false),
             thread(&RqtSpinner::spin, *this)
 {
+
+    //ros::Publisher* pub = rqtServer->getPublisher();
+    
     this->rqtServer = rqtServer;
 }
 
@@ -13,6 +16,8 @@ void RqtSpinner::spin()
 {
     ros::NodeHandle nh;
     ros::Subscriber sub = nh.subscribe<std_msgs::String>("chatter", 10, &RqtSpinner::callback, this);
+    ros::Publisher* mainsPub = rqtServer->getPublisher();
+    *mainsPub = nh.advertise<std_msgs::String>("chatter", 10);
     
     
     ros::Rate loop(10);

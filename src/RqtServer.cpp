@@ -72,6 +72,13 @@ void RqtServer::processMessage(QString message)
     std::stringstream ss;
     ss << message.toStdString();
     msg.data = ss.str();
+    //pubPtr->publish(msg);
+}
+
+
+ros::Publisher* RqtServer::getPublisher()
+{
+    return pubPtr;
 }
 
 void RqtServer::socketDisconnected()
