@@ -36,8 +36,12 @@ void RqtServer::messageBridge(const std_msgs::String::ConstPtr& msg)
     QWebSocket falsePrince;
     connect(&falsePrince, &QWebSocket::textMessageReceived, this, &RqtServer::processMessage);
     
-    std::cout << "about to emit signal" << std::endl;
-    emit falsePrince.textMessageReceived(qtMsg);
+    //if(qtMsg.compare("Arise, my robot army!") != 0 )
+    {
+        std::cout << "about to emit signal" << std::endl;
+        emit falsePrince.textMessageReceived(qtMsg);
+    }
+    
 }
 
 
@@ -68,11 +72,17 @@ void RqtServer::processMessage(QString message)
         }
     }
     
-    std_msgs::String msg;
-    std::stringstream ss;
-    ss << message.toStdString();
-    msg.data = ss.str();
-    //pubPtr->publish(msg);
+    if(message.compare("Arise, my robot army!") != 0 )
+    {
+        std::cout << "publishing user message:" << message.toStdString() << std::endl;
+        std_msgs::String msg;
+        std::stringstream ss;
+        ss << message.toStdString();
+        msg.data = ss.str();
+        pubPtr->publish(msg);
+        message = "null";
+    }
+    
 }
 
 

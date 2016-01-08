@@ -59,6 +59,10 @@ rosrun ros_ip_transform RosClient
 ```
 roscore &
 rosrun ros_ip_transform rqt_server
+rosrun ros_ip_transform rqt_chatterbot
+
+rostopic echo /chatter
+rostopic echo /user/chatter
 ```
 Then start one or more clients by running the chatclient.html file located in the src folder.
 
