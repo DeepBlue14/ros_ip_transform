@@ -3,7 +3,7 @@
  * Module: ros_ip_transforms
  * Author: James Kuczynski
  * Email: jkuczyns@cs.uml.edu
- * File Description: 
+ * File Description: main() method for the websocket server.
  *
  * TODO: use global variable/buffer to pass data between threads?
  *       Or have spinner call RqtServer slot directly?

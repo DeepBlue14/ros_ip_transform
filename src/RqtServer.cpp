@@ -72,7 +72,7 @@ void RqtServer::processMessage(QString message)
         }
     }
     
-    if(message.compare("Arise, my robot army!") != 0 )
+    if(!message.contains(QRegExp("I am robot_[0-9]{3}$")) )
     {
         std::cout << "publishing user message:" << message.toStdString() << std::endl;
         std_msgs::String msg;

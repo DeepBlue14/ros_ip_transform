@@ -27,7 +27,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
-find_package(Qt5 5.5.0 EXACT REQUIRED COMPONENTS Core Gui Widgets WebSockets)
+find_package(Qt5 5.5.1 EXACT REQUIRED COMPONENTS Core Gui Widgets WebSockets)
 #include(${QT_USE_FILE})
 add_definitions(${QT_DEFINITIONS})
 include_directories({QT_LIBRARY_DIRS})
@@ -189,8 +189,24 @@ add_library(ros_ip_transform STATIC src/RosServer.cpp src/RosClient.cpp)
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-add_executable(rqt_chatterbot src/Chatterbot.cpp)
-target_link_libraries(rqt_chatterbot ${catkin_LIBRARIES})
+
+
+#add_executable(rqt_chatterbot src/Chatterbot.cpp)
+#target_link_libraries(rqt_chatterbot ${catkin_LIBRARIES})
+
+add_executable(rqt_chatterbot_001 src/chatterbots/Chatterbot_001.cpp)
+target_link_libraries(rqt_chatterbot_001 ${catkin_LIBRARIES})
+
+add_executable(rqt_chatterbot_002 src/chatterbots/Chatterbot_002.cpp)
+target_link_libraries(rqt_chatterbot_002 ${catkin_LIBRARIES})
+
+add_executable(rqt_chatterbot_003 src/chatterbots/Chatterbot_003.cpp)
+target_link_libraries(rqt_chatterbot_003 ${catkin_LIBRARIES})
+
+add_executable(rqt_chatterbot_004 src/chatterbots/Chatterbot_004.cpp)
+target_link_libraries(rqt_chatterbot_004 ${catkin_LIBRARIES})
+
+
 
 add_executable(RosClient src/RosClient_main.cpp
                          src/RosClient.cpp)
@@ -209,9 +225,9 @@ qt5_use_modules(rqt_server Core WebSockets)
 
 
 #Frankenscooter-project specific:
-add_executable(DataCom src/scooter_specific/DataCom_main.cpp
-                       src/scooter_specific/DataCom.cpp)
-target_link_libraries(DataCom ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+#add_executable(DataCom src/scooter_specific/DataCom_main.cpp
+#                       src/scooter_specific/DataCom.cpp)
+#target_link_libraries(DataCom ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
 
 ##---------------------------------------------------------------------------------

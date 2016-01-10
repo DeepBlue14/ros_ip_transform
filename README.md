@@ -56,12 +56,13 @@ rosrun ros_ip_transform RosClient
 ```
 
 **Run (websockets)**
+Run eadh of the following commands in a different terminal:
 ```
-roscore &
+roscore
 rosrun ros_ip_transform rqt_server
-rosrun ros_ip_transform rqt_chatterbot
+rosrun ros_ip_transform rqt_chatterbot_001
 
-rostopic echo /chatter
+rostopic echo /troup_001/robot_001/chatter
 rostopic echo /user/chatter
 ```
 Then start one or more clients by running the chatclient.html file located in the src folder.

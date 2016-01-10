@@ -1,9 +1,7 @@
 #include "RqtSpinner.h"
 
 
-RqtSpinner::RqtSpinner(RqtServer* rqtServer) :
-            shutdown_required(false),
-            thread(&RqtSpinner::spin, *this)
+RqtSpinner::RqtSpinner(RqtServer* rqtServer) : shutdown_required(false), thread(&RqtSpinner::spin, *this)
 {
 
     //ros::Publisher* pub = rqtServer->getPublisher();
@@ -15,7 +13,7 @@ RqtSpinner::RqtSpinner(RqtServer* rqtServer) :
 void RqtSpinner::spin()
 {
     ros::NodeHandle nh;
-    ros::Subscriber sub = nh.subscribe<std_msgs::String>("chatter", 10, &RqtSpinner::callback, this);
+    ros::Subscriber sub = nh.subscribe<std_msgs::String>("/troup_001/robot_001/chatter", 10, &RqtSpinner::callback, this);
     ros::Publisher* mainsPub = rqtServer->getPublisher();
     *mainsPub = nh.advertise<std_msgs::String>("/user/chatter", 10);
     

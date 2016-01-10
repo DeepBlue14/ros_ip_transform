@@ -3,7 +3,8 @@
  * Module: ros_ip_transform
  * Author: James Kuczynski
  * Email: jkuczyns@cs.uml.edu
- * File Description: 
+ * File Description: This class implements most of the ROS side of this
+ *                   program, listening for rostopic messages from the robots.
  *
  * Created: 1/01/2016
  * Last Modified: 1/05/2016

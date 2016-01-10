@@ -21,10 +21,10 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-    ros::init(argc, argv, "chatterbot_3");
+    ros::init(argc, argv, "chatterbot_004");
     
     ros::NodeHandle nh;
-    ros::Publisher chatter_pub = nh.advertise<std_msgs::String>("division_one/robot_three/chatter", 1);
+    ros::Publisher chatter_pub = nh.advertise<std_msgs::String>("troup_001/robot_004/chatter", 1);
     
     ros::Rate loop_rate(1); //1 hz
     
@@ -33,7 +33,7 @@ int main(int argc, char **argv)
     {
         std_msgs::String msg;
         stringstream ss;
-        ss << "Arise, my robot army!";//<< count;
+        ss << "I am robot_004";//<< count;
         msg.data = ss.str();
         ROS_INFO("%s", msg.data.c_str() );
         chatter_pub.publish(msg);
