@@ -27,7 +27,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
-find_package(Qt5 5.5.1 EXACT REQUIRED COMPONENTS Core Gui Widgets WebSockets)
+find_package(Qt5 5.5.0 EXACT REQUIRED COMPONENTS Core Gui Widgets WebSockets)
 #include(${QT_USE_FILE})
 add_definitions(${QT_DEFINITIONS})
 include_directories({QT_LIBRARY_DIRS})

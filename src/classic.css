@@ -1,7 +1,23 @@
+/**
+ * File:   classic.css
+ * Author: James Kuczynski
+ * Email: jkuczyns@cs.uml.edu
+ * File Description: 
+ *
+ * Created: 
+ * Last Modified: 
+ */
+
+
 body {
+
+    color: blue;
     background-color: lightblue;
 }
 
+
 textarea {
-    background-color: blue;
+
+    color: lightgray;
+    background-color: black;
 }

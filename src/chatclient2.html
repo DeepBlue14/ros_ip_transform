@@ -10,20 +10,38 @@
             <button onClick="initWebSocket();">Connect</button>
             <button onClick="stopWebSocket();">Disconnect</button>
             <button onClick="checkSocket();">State</button>
+            <button onClick="addTextbox();">Add</button>
         </p>
         <p>
-            <textarea id="debugTextArea" style="width:400px;height:200px;"></textarea>
+            <span id="term_row_1">
+                <textarea id="term_0" style="width:400px;height:200px;"></textarea>
+            </span>
         </p>
         <p>
             <input type="text" id="inputText" onkeydown="if(event.keyCode==13)sendMessage();"/>
             <button onClick="sendMessage();">Send</button>
         </p>
-
         <script type="text/javascript">
-            var debugTextArea = document.getElementById("debugTextArea");
+            var term_0 = document.getElementById("term_0");
+            
             function debug(message) {
-                debugTextArea.value += message + "\n";
-                debugTextArea.scrollTop = debugTextArea.scrollHeight;
+                term_0.value += message + "\n";
+                term_0.scrollTop = term_0.scrollHeight;
+            }
+            
+            var termCount = 1;
+            function addTextbox() {
+            
+                var element = document.createElement("textarea");
+                termCount++;
+                
+                element.setAttribute("type", "text");
+                element.setAttribute("value", "text");
+                element.setAttribute("name", "term_" + termCount.value);
+                element.setAttribute("style", "width:400px;height:200px;");
+                
+                var addedTextarea = document.getElementById("term_row_1");
+                addedTextarea.appendChild(element);
             }
 
 			/*
