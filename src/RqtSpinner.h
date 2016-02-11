@@ -18,6 +18,7 @@
 //#include <QApplication>
 #include <ros/ros.h>
 #include <std_msgs/String.h>
+#include <std_msgs/Int32.h>
 
 #include <ecl/threads/thread.hpp> // or boost threads if you prefer
 
